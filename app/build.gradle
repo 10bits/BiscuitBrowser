@@ -30,7 +30,10 @@ android {
     }
 
     flavorDimensions "abi"
-
+    productFlavors {
+        //arm { dimension "abi" }
+        aarch64 { dimension "abi" }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
