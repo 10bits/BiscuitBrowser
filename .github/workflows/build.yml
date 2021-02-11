@@ -25,9 +25,17 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: build apk
+        id: build_apk
         run: |
           chmod +x gradlew
-          ./gradlew aR
-          APP_BUILD_APK=$(find $GITHUB_WORKSPACE/app/build -regex .*/release/.*.apk)
-          echo "build apk:$APP_BUILD_APK"
+          ./gradlew assembleDebug
+          APP_BUILD_APK=$(find $APP_WORKSPACE/app/build -type f -regex .*/.*.apk)
+          echo ::set-output name=UPLOAD_NAME::BiscuitBrowser-apk
+          echo ::set-output name=UPLOAD::${APP_BUILD_APK%/*}
+      - name: upload artifact
+        uses: actions/upload-artifact@master
+        if: success()
+        with:
+          name: ${{ steps.build_apk.outputs.UPLOAD_NAME }}
+          path: ${{ steps.build_apk.outputs.UPLOAD }}
         
