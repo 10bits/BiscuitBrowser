@@ -29,7 +29,7 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
-          APP_BUILD_APK=$(find $APP_WORKSPACE/app/build -type f -regex .*/.*.apk)
+          APP_BUILD_APK=$(find $GITHUB_WORKSPACE/app/build -type f -regex .*/.*.apk)
           echo ::set-output name=UPLOAD_NAME::BiscuitBrowser-apk
           echo ::set-output name=UPLOAD::${APP_BUILD_APK%/*}
       - name: upload artifact
