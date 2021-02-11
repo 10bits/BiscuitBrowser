@@ -16,7 +16,7 @@ android {
             abiFilters "arm64-v8a"//, "armeabi-v7a"
         }
         applicationId "com.cookiejarapps.android.smartcookieweb"
-        minSdkVersion 28
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
